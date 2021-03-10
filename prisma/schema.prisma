@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  idUserPk    Int       @id @default(autoincrement())
+  email       String
+  @@map("user")
+}
+
+model Principal {
+  idPrincipalPk Int @default(autoincrement()) @id
+  textoObrigatorio String
+  textoFacultativo String?
+  decimalObrigatorio Float
+  decimalFacultativo Float?
+  inteiroObrigatorio Int
+  inteiroFacultativo Int?
+  booleanoObrigatorio Boolean
+  booleanoFacultativo Boolean?
+  dataObrigatoria DateTime
+  dataFacultativa DateTime?
+  datahoraObrigatoria DateTime
+  datahoraFacultativa DateTime?
+  ativo Boolean @default(true)
+  email String?
+  senha String?
+  urlImagem String?
+  url String?
+  idGrupoDoPrincipalFk Int
+  grupoDoPrincipal GrupoDoPrincipal @relation(name: "mandatory", fields: [idGrupoDoPrincipalFk], references: [idGrupoDoPrincipalPk])
+  idGrupoDoPrincipalFacultativoFk Int?
+  grupoDoPrincipalFacultativo GrupoDoPrincipal? @relation(name: "optional", fields: [idGrupoDoPrincipalFacultativoFk], references: [idGrupoDoPrincipalPk])
+  unico String
+  dataCriacao DateTime
+  dataAlteracao DateTime?
+  nome String?
+  titulo String?
+  cpf String?
+  cnpj String?
+  rg String?
+  celular String?
+  textoGrande String?
+  snakeCase String? @map("snake_case")
+  preco Float?
+  @@map("principal")
+}
+
+model GrupoDoPrincipal {
+  idGrupoDoPrincipalPk Int @default(autoincrement()) @id
+  titulo String
+  principals     Principal[] @relation("mandatory")
+  optionalPrincipals Principal[] @relation("optional")
+  @@map("grupo_do_principal")
+}
