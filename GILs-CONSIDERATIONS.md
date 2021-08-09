@@ -1,4 +1,6 @@
 # Minhas Considerações do estudo
+Esse app foi feito a partir desse artigo:
+https://dev.to/prisma/complete-introduction-to-fullstack-type-safe-graphql-feat-next-js-nexus-prisma-c5
 
 ## O que temos
 - No arquivo prisma/schema.prisma você define os models da aplicação
@@ -25,6 +27,11 @@
 
 - O arquivo pages/index.tsx é a página inicial da aplicação
     - O Next faz o "file system routing", pra criar uma página nova basta criar um arquivo nessa pasta
+  
+## Plugins para IntelliJ
+- Prisma Support: https://plugins.jetbrains.com/plugin/14282-prisma-support
+- JS GraphQL: https://plugins.jetbrains.com/plugin/8097-js-graphql
+
 
 ## A seguir
 
