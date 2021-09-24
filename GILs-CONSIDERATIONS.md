@@ -5,12 +5,18 @@ https://dev.to/prisma/complete-introduction-to-fullstack-type-safe-graphql-feat-
 ## O que temos
 - No arquivo prisma/schema.prisma você define os models da aplicação
     - dá pra gerar esse arquivo automaticamente do bd (npx prisma introspect) mas acho que só funciona com versões mais novas do MySQL
-    - mas podemos gerar o bd apartir dele tb, oq é mais recomendado
+    - mas podemos gerar o bd apartir dele tb, oq é mais recomendado (npx prisma db push)
     - Não vamos precisar gerar nenhum outro arquivo de model, esse vai ser o single-source-of-truth pq temos todo um mecamismo que gera os tipos apartir disso. Em outras configurações os tipos giram em torno do GraphQL, porém nós geramos esses tipos do GraphQL apartir do prisma pq o prisma define detalhes de BD
     - Para poder usar lógica com o model, se formos pro caminho OOP podemos usar extension methods ou herança; mas tb podemos usar apenas métodos estaticos
-    - Sempre que alterar este arquivo precisa rodar npx prisma generate
+    - Sempre que alterar este arquivo precisa rodar `npm run prisma`
 
 - No arquivo .env podemos definir variáveis para configurar a conexão ao BD
+    - Esse arquivo não é comitado, vc precisa criar um arquivo chamado .env na raiz assim:
+      DB_HOST="bd.martinlabs.com.br"
+      DB_NAME="usecase"
+      DB_USER="root"
+      DB_PASS="n6YC1iDNMRusJZ3zvOdyJjCEfTAFeJu"
+      DATABASE_URL="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}:3306/${DB_NAME}?useSSL=false"
 
 - No arquivo graphql/schema.ts podemos definir o que fazemos hoje nos nossos process
     - ele define todas as queries (pra obter dados), mutations (para alterar dados) e cada campo do model que pode ser visível

@@ -1,0 +1,57 @@
+@startuml
+
+skinparam linetype ortho
+
+entity User {
+  * idUserPk: Int
+  * email: String
+}
+
+entity Principal {
+  * idPrincipalPk: Int
+  * textoObrigatorio: String
+  textoFacultativo: String?
+  * decimalObrigatorio: Float
+  decimalFacultativo: Float?
+  * inteiroObrigatorio: Int
+  inteiroFacultativo: Int?
+  * booleanoObrigatorio: Boolean
+  booleanoFacultativo: Boolean?
+  * dataObrigatoria: DateTime
+  dataFacultativa: DateTime?
+  * datahoraObrigatoria: DateTime
+  datahoraFacultativa: DateTime?
+  * ativo: Boolean
+  email: String?
+  senha: String?
+  urlImagem: String?
+  url: String?
+  * idGrupoDoPrincipalFk: Int
+  * grupoDoPrincipal: GrupoDoPrincipal
+  idGrupoDoPrincipalFacultativoFk: Int?
+  grupoDoPrincipalFacultativo: GrupoDoPrincipal?
+  * unico: String
+  * dataCriacao: DateTime
+  dataAlteracao: DateTime?
+  nome: String?
+  titulo: String?
+  cpf: String?
+  cnpj: String?
+  rg: String?
+  celular: String?
+  textoGrande: String?
+  snakeCase: String?
+  preco: Float?
+}
+
+entity GrupoDoPrincipal {
+  * idGrupoDoPrincipalPk: Int
+  * titulo: String
+  * principals: Principal[]
+  * optionalPrincipals: Principal[]
+}
+
+Principal }|..|| GrupoDoPrincipal
+Principal }|..|| GrupoDoPrincipal
+
+@enduml
